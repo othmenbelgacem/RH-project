@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Data Table</title>
+</head>
+<body>
+    <h1>{{ category }} Data Table</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Mail</th>
+                <th>Category</th>
+                <th>Years of Experience</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry_data in data %}
+                <tr>
+                    <td>{{ entry_data.get("ID", "") }}</td>
+                    <td>{{ entry_data.get("First name", "") }}</td>
+                    <td>{{ entry_data.get("Last name", "") }}</td>
+                    <td>{{ entry_data.get("Age", "") }}</td>
+                    <td>{{ entry_data.get("Mail", "") }}</td>
+                    <td>{{ entry_data.get("Category", "") }}</td>
+                    <td>{{ entry_data.get("Years of Experience", "") }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if simple_linear_regression_plot %}
+        <h2>Simple Linear Regression Plot</h2>
+        <img src="{{ url_for('plot', plot_type='simple', category=category) }}" alt="Simple Linear Regression Plot">
+    {% endif %}
+
+    {% if multiple_linear_regression_plot %}
+        <h2>Multiple Linear Regression Plot</h2>
+        <img src="{{ url_for('plot', plot_type='multiple', category=category) }}" alt="Multiple Linear Regression Plot">
+    {% endif %}
+</body>
+</html>
